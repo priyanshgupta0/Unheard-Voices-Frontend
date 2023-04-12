@@ -22,8 +22,8 @@ const Splash = () => {
         <SafeAreaView style={styles.background}>
             <View >
                 <Image
-                    source={require('./../../assets/logo.png')}
-                    style={[styles.Logo]}
+                    source={require('./../../assets/logoUV.png')}
+                    style={[styles.Logo, { marginTop: mobileW * .7, }]}
                 />
             </View>
         </SafeAreaView>

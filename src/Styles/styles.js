@@ -8,7 +8,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
     },
+
+    TextStylenormal: {
+        color: 'black',
+        fontWeight: "600",
+        alignSelf: "center",
+        fontSize: mobileW * .05,
+        margin: mobileW * .05
+    },
     TextStyle: {
+        marginLeft: mobileW * .1,
         color: 'black',
         alignSelf: "center",
         fontWeight: "bold",
@@ -21,8 +30,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     Logo: {
-        width: mobileW * .8,
-        height: mobileW * .3,
         alignSelf: "center",
         margin: mobileW * .05,
     },
@@ -33,6 +40,24 @@ const styles = StyleSheet.create({
         marginLeft: mobileW * .1,
         marginRight: mobileW * .1,
         marginTop: mobileW * .05,
+        borderRadius: 5,
+    },
+    LoignButton: {
+        backgroundColor: '#ff6162',
+        height: mobileW * .1,
+        width: mobileW * .2,
+        borderRadius: mobileW * .05,
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        alignItems: 'center',
+        alignSelf: 'center',
+        margin: mobileW * .04
+    },
+    LoignButtonTextStyle: {
+        fontWeight: '700',
+        fontSize: mobileW * .04,
+        color: 'black'
     },
 })
 

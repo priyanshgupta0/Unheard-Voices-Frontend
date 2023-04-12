@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import Splash from './Screens/Splash';
 import Login from './Screens/Login';
+import UserReg from './Screens/User_Reg';
+import NgoReg from './Screens/NgoReg';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +19,14 @@ const App = () => {
         <Stack.Screen
           name="Login"
           component={Login}
+          options={{ headerShown: false }} />
+        <Stack.Screen
+          name="UserReg"
+          component={UserReg}
+          options={{ headerShown: false }} />
+        <Stack.Screen
+          name="NgoReg"
+          component={NgoReg}
           options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
