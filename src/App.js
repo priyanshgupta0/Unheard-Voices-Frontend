@@ -5,6 +5,8 @@ import Splash from './Screens/Splash';
 import Login from './Screens/Login';
 import UserReg from './Screens/User_Reg';
 import NgoReg from './Screens/NgoReg';
+import UserHome from './Screens/UserHome';
+// import { AsyncStorageStatic } from '@react-native-async-storage/async-storage'
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,10 @@ const App = () => {
         <Stack.Screen
           name="NgoReg"
           component={NgoReg}
+          options={{ headerShown: false }} />
+        <Stack.Screen
+          name="UserHome"
+          component={UserHome}
           options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>

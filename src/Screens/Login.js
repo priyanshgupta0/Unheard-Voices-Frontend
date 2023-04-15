@@ -16,6 +16,10 @@ const Login = () => {
     const goToNgoReg = () => {
         navigator.navigate('NgoReg');
     }
+    const goToUserHome = () => {
+        navigator.navigate('UserHome');
+    }
+
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [Hide, setHide] = useState(true);
@@ -82,7 +86,7 @@ const Login = () => {
                     flexDirection: "row", alignItems: "center", marginLeft: mobileW * .1,
                     marginRight: mobileW * .1, alignSelf: "center",
                 }}>
-                    <TouchableOpacity style={[styles.LoignButton]} onPress={() => { }}>
+                    <TouchableOpacity style={[styles.LoignButton]} onPress={() => { goToUserHome() }}>
                         <Text style={[styles.LoignButtonTextStyle]}>User</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.LoignButton]} onPress={() => { }}>

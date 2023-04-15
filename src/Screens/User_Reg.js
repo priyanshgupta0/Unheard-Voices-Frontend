@@ -9,7 +9,39 @@ const mobileh = Dimensions.get("screen").height;
 
 const UserReg = () => {
 
+
+
+
     navigator = useNavigation();
+    let url = `http://10.0.2.2:8080/auth/signup`;
+    const HandelSignUp = () => {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                // Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: Name,
+                email: Email,
+                password: Password
+            })
+        })
+            .then((Response) => Response.json())
+            .then((json) => {
+                console.log(json.name);
+                console.log(json.email);
+                console.log(json.password);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        goToUserHome();
+    }
+
+    const goToUserHome = () => {
+        navigator.navigate('UserHome');
+    }
 
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
@@ -97,7 +129,7 @@ const UserReg = () => {
                         style={{ width: mobileW * .08, height: mobileW * .08, margin: mobileW * .02, flex: 1 }}
                     /></TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.LoignButton, { width: mobileW * .4 }]} onPress={() => { }}>
+                <TouchableOpacity style={[styles.LoignButton, { width: mobileW * .4 }]} onPress={() => { HandelSignUp() }}>
                     <Text style={[styles.LoignButtonTextStyle]}>Register Now</Text>
                 </TouchableOpacity>
             </View>
