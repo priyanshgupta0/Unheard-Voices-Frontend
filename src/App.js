@@ -6,6 +6,7 @@ import Login from './Screens/Login';
 import UserReg from './Screens/User_Reg';
 import NgoReg from './Screens/NgoReg';
 import UserHome from './Screens/UserHome';
+import L2Complaint from './Screens/lodgeComplaint2';
 // import { AsyncStorageStatic } from '@react-native-async-storage/async-storage'
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +34,10 @@ const App = () => {
         <Stack.Screen
           name="UserHome"
           component={UserHome}
+          options={{ headerShown: false }} />
+        <Stack.Screen
+          name="L2page"
+          component={L2Complaint}
           options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
