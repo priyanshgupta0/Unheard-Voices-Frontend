@@ -52,9 +52,11 @@ const LComplaint = ({ route }) => {
                 <Text style={[styles.TextStylenormal]}>Your Current Cordiantes</Text>
                 <Text style={[styles.TextStylenormal]}>Longitude : {long}</Text>
                 <Text style={[styles.TextStylenormal]}>Latitude : {lat}</Text>
-                <TouchableOpacity style={[styles.LoignButton, { width: mobileW * .3 }]} onPress={() => { gotonextstep() }}>
-                    <Text style={[styles.LoignButtonTextStyle]}>Next</Text>
-                </TouchableOpacity>
+                {
+                    long !== '' ? <TouchableOpacity style={[styles.LoignButton, { width: mobileW * .3 }]} onPress={() => { gotonextstep() }}>
+                        <Text style={[styles.LoignButtonTextStyle]}>Next</Text>
+                    </TouchableOpacity> : null
+                }
             </View>
         </SafeAreaView>
     )

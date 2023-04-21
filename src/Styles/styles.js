@@ -17,11 +17,28 @@ const styles = StyleSheet.create({
         fontWeight: '400'
     },
     TextStylenormal: {
+        marginLeft: mobileW * .1,
         color: 'black',
         fontWeight: "600",
         alignSelf: "center",
         fontSize: mobileW * .05,
         margin: mobileW * .05
+    },
+    TextStylepolicy: {
+        marginLeft: mobileW * .1,
+        color: 'black',
+        fontWeight: "700",
+        alignSelf: "flex-start",
+        fontSize: mobileW * .05,
+        margin: mobileW * .05
+    },
+    normalTextStylepolicy: {
+        marginLeft: mobileW * .1,
+        marginRight: mobileW * .1,
+        color: 'black',
+        fontWeight: "500",
+        alignSelf: "flex-start",
+        fontSize: mobileW * .04,
     },
     TextStyle: {
         marginLeft: mobileW * .1,
