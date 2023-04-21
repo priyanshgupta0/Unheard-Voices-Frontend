@@ -16,18 +16,18 @@ const mobileh = Dimensions.get("screen").height;
 
 const UserHome = () => {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="LComplaint" component={LComplaint} options={{
-                headerShown: false, title: "Report", tabBarIcon: () => {
-                    return (
-                        <MaterialIcons name='report-problem' size={25} color="black" />
-                    );
-                }
-            }} />
+        <Tab.Navigator initialRouteName="Policy" >
             <Tab.Screen name="Policy" component={Policy} options={{
                 headerShown: false, title: "Policy", tabBarIcon: () => {
                     return (
                         <MaterialIcons name='policy' size={25} color="black" />
+                    );
+                }
+            }} />
+            <Tab.Screen name="LComplaint" component={LComplaint} options={{
+                headerShown: false, title: "Report", tabBarIcon: () => {
+                    return (
+                        <MaterialIcons name='report-problem' size={25} color="black" />
                     );
                 }
             }} />

@@ -39,8 +39,10 @@ const L2Complaint = () => {
 
 
 
-    const gotonextstep = () => {
-        navigator.navigate('UserHome');
+    const handelReport = () => {
+        alert('Succesfully Reported');
+        navigator.navigate('UserHome', { screen: 'Policy' });
+
     }
 
     return (
@@ -69,7 +71,7 @@ const L2Complaint = () => {
                     /> : null
                 }
                 {
-                    cameraPhoto !== '' ? <TouchableOpacity style={[styles.LoignButton,]} onPress={() => { gotonextstep() }}>
+                    cameraPhoto !== '' ? <TouchableOpacity style={[styles.LoignButton,]} onPress={() => { handelReport() }}>
                         <Text style={[styles.LoignButtonTextStyle]}>Report</Text>
                     </TouchableOpacity>
                         :
