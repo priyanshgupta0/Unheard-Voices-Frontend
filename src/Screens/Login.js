@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dimensions, FlatList, SafeAreaView, StatusBar, Image, StyleSheet, Text, TouchableOpacity, TextInput, View } from "react-native";
+import { Dimensions, FlatList, SafeAreaView, StatusBar, Image, StyleSheet, Text, TouchableOpacity, TextInput, View, Alert } from "react-native";
 import styles from "../Styles/styles";
 import { useNavigation } from "@react-navigation/native";
 
@@ -9,6 +9,48 @@ const mobileh = Dimensions.get("screen").height;
 const Login = () => {
 
     navigator = useNavigation();
+
+
+    let url = `http://10.0.2.2:8080/auth/login`;
+    const handelLoginUser = () => {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                // Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: Email,
+                password: Password
+            })
+        })
+            .then((Response) => Response.json())
+            .then((json) => {
+                console.log(json.token);
+                console.log(json.userId);
+                console.log(json.message);
+                if (json.token) {
+                    goToUserHome();
+                }
+                if (json.message) {
+                    if (Email == '') {
+                        setEResult('* Email can not be empty')
+                    } else {
+                        setEResult('')
+                    }
+                    if (Password == '') {
+                        setPResult('* Password can not be empty')
+                    } else {
+                        setPResult('* Invalid Email or Password')
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+    }
+
 
     const goToUserReg = () => {
         navigator.navigate('UserReg');
@@ -21,7 +63,9 @@ const Login = () => {
     }
 
     const [Email, setEmail] = useState('');
+    const [EResult, setEResult] = useState('');
     const [Password, setPassword] = useState('');
+    const [PResult, setPResult] = useState('');
     const [Hide, setHide] = useState(true);
 
     const HideButton = () => {
@@ -52,6 +96,7 @@ const Login = () => {
                             flex: 8
                         }} />
                 </View>
+                <Text style={[styles.Warning]}>{EResult}</Text>
                 <View style={[styles.Box]}>
                     <Image
                         source={require('./../../assets/padlock.png')}
@@ -72,6 +117,7 @@ const Login = () => {
                         style={{ width: mobileW * .08, height: mobileW * .08, margin: mobileW * .02, flex: 1 }}
                     /></TouchableOpacity>
                 </View>
+                <Text style={[styles.Warning]}>{PResult}</Text>
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', marginLeft: mobileW * .1,
                     marginRight: mobileW * .1,
@@ -86,7 +132,7 @@ const Login = () => {
                     flexDirection: "row", alignItems: "center", marginLeft: mobileW * .1,
                     marginRight: mobileW * .1, alignSelf: "center",
                 }}>
-                    <TouchableOpacity style={[styles.LoignButton]} onPress={() => { goToUserHome() }}>
+                    <TouchableOpacity style={[styles.LoignButton]} onPress={() => { handelLoginUser() }}>
                         <Text style={[styles.LoignButtonTextStyle]}>User</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.LoignButton]} onPress={() => { }}>

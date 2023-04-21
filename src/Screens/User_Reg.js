@@ -10,11 +10,52 @@ const mobileh = Dimensions.get("screen").height;
 const UserReg = () => {
 
 
-
+    const HandelSignUp = () => {
+        let email = Email;
+        let password = Password;
+        let count = 0;
+        let regx = /^([a-z A-Z 0-9 \. -]+)@([a-z A-Z 0-9 -]+).([a-z]{2,20})$/;
+        let regy = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (email.match(regx)) {
+            setREmail('');
+            count++;
+        } else if (email == '') {
+            setREmail('* E-mail can not be empty');
+        } else {
+            setREmail('* Invalid E-mail ID');
+        }
+        if (password.match(regy)) {
+            setRPassword('');
+            count++;
+        } else if (password == '') {
+            setRPassword('* Password can not be empty')
+        } else {
+            setRPassword('* Password must be like Ex: Abc@123$')
+        }
+        if (Mobile.length == 10) {
+            setRMobile('')
+            count++;
+        } else if (Mobile.length == 0) {
+            setRMobile('* Mobile Number can not be empty')
+        } else {
+            setRMobile('* Enter a valid mobile number')
+        }
+        if (Name == '') {
+            setRName('* Name can not be empty')
+        } else if (Name.length < 3) {
+            setRName('* Enter a valid name')
+        } else {
+            setRName('')
+            count++;
+        }
+        if (count == 4) {
+            signUpApi();
+        }
+    }
 
     navigator = useNavigation();
     let url = `http://10.0.2.2:8080/auth/signup`;
-    const HandelSignUp = () => {
+    const signUpApi = () => {
         fetch(url, {
             method: 'POST',
             headers: {
@@ -29,24 +70,34 @@ const UserReg = () => {
         })
             .then((Response) => Response.json())
             .then((json) => {
-                console.log(json.name);
-                console.log(json.email);
-                console.log(json.password);
+                console.log(json.message);
+                console.log(json.userId);
+                console.log(json.data);
+                if (json.data) {
+                    setREmail(json.data[0].msg);
+                }
+                if (json.userId) {
+                    goToLogin();
+                }
             })
             .catch((error) => {
                 console.log(error);
             })
-        goToUserHome();
+        // goToUserHome();
     }
 
-    const goToUserHome = () => {
-        navigator.navigate('UserHome');
+    const goToLogin = () => {
+        navigator.navigate('Login');
     }
 
-    const [Email, setEmail] = useState('');
-    const [Password, setPassword] = useState('');
-    const [Mobile, setMobile] = useState('');
     const [Name, setName] = useState('');
+    const [RName, setRName] = useState('');
+    const [Email, setEmail] = useState('');
+    const [REmail, setREmail] = useState('');
+    const [Mobile, setMobile] = useState('');
+    const [RMobile, setRMobile] = useState('');
+    const [Password, setPassword] = useState('');
+    const [RPassword, setRPassword] = useState('');
     const [Hide, setHide] = useState(true);
 
     const HideButton = () => {
@@ -77,6 +128,7 @@ const UserReg = () => {
                             flex: 8
                         }} />
                 </View>
+                <Text style={[styles.Warning]}>{RName}</Text>
                 <View style={[styles.Box]}>
                     <Image
                         source={require('./../../assets/email.png')}
@@ -92,6 +144,7 @@ const UserReg = () => {
                             flex: 8
                         }} />
                 </View>
+                <Text style={[styles.Warning]}>{REmail}</Text>
                 <View style={[styles.Box]}>
                     <Image
                         source={require('./../../assets/cell.png')}
@@ -109,6 +162,7 @@ const UserReg = () => {
                             flex: 8
                         }} />
                 </View>
+                <Text style={[styles.Warning]}>{RMobile}</Text>
                 <View style={[styles.Box]}>
                     <Image
                         source={require('./../../assets/padlock.png')}
@@ -129,6 +183,7 @@ const UserReg = () => {
                         style={{ width: mobileW * .08, height: mobileW * .08, margin: mobileW * .02, flex: 1 }}
                     /></TouchableOpacity>
                 </View>
+                <Text style={[styles.Warning]}>{RPassword}</Text>
                 <TouchableOpacity style={[styles.LoignButton, { width: mobileW * .4 }]} onPress={() => { HandelSignUp() }}>
                     <Text style={[styles.LoignButtonTextStyle]}>Register Now</Text>
                 </TouchableOpacity>

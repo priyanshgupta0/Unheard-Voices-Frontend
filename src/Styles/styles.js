@@ -8,7 +8,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
     },
-
+    Warning: {
+        marginTop: mobileW * .01,
+        marginLeft: mobileW * .1,
+        marginRight: mobileW * .1,
+        color: 'red',
+        fontSize: mobileW * .03,
+        fontWeight: '400'
+    },
     TextStylenormal: {
         color: 'black',
         fontWeight: "600",
